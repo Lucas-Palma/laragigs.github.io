@@ -48,9 +48,8 @@
 
 
         <main>
-            
-            @yield('content')
-
+            {{--Wrapper--}}
+            {{$slot}}
         </main>
 
             <footer
