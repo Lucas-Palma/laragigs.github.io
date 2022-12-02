@@ -19,7 +19,16 @@ use App\Http\Controllers\ListingController;
 // All Listings
 Route::get('/', [ListingController::class, 'index']);
 
- 
+
+
+// Show Create Form
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+// Store Listing Data
+Route::post('/listings', [ListingController::class, 'store']);
+
 // Single Listing
+// It has to be at the bottom because it shares the same route as create.
+// Otherwise it'll cause a 404 error.
 Route::get('/listings/{listing}',
 [ListingController::class, 'show']);
