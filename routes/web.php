@@ -27,7 +27,19 @@ Route::get('/listings/create', [ListingController::class, 'create']);
 // Store Listing Data
 Route::post('/listings', [ListingController::class, 'store']);
 
-// Single Listing
+// Show Edit Form
+Route::get('/listings/{listing}/edit',
+[ListingController::class, 'edit']);
+
+// Update Listing
+Route::put('/listings/{listing}',
+[ListingController::class, 'update']);
+
+// Delte listing
+Route::delete('/listings/{listing}',
+[ListingController::class, 'destroy']);
+
+// Single Listing 
 // It has to be at the bottom because it shares the same route as create.
 // Otherwise it'll cause a 404 error.
 Route::get('/listings/{listing}',
