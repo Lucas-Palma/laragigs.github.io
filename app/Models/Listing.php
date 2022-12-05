@@ -10,7 +10,7 @@ class Listing extends Model
     use HasFactory;
     
     // It is needed to submit forms
-    protected $fillable = ['company', 'title', 'location', 'email', 'website', 'tags', 'description'];
+    protected $fillable = ['company', 'title', 'logo', 'location', 'email', 'website', 'tags', 'description'];
 
     public function scopeFilter($query, array $filters) {
           if($filters['tag'] ?? false) {
