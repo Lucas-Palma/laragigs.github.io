@@ -10,17 +10,22 @@ class Listing extends Model
     use HasFactory;
     
     // It is needed to submit forms
-    protected $fillable = ['company', 'title', 'logo', 'location', 'email', 'website', 'tags', 'description'];
+    protected $fillable = ['company', 'title', 'user_id', 'logo', 'location', 'email', 'website', 'tags', 'description'];
 
     public function scopeFilter($query, array $filters) {
-          if($filters['tag'] ?? false) {
-            $query->where('tags', 'like', '%' . request('tag') . '%');
-          }
+      if($filters['tag'] ?? false) {
+        $query->where('tags', 'like', '%' . request('tag') . '%');
+      }
 
-          if($filters['search'] ?? false) {
-            $query->where('title', 'like', '%' . request('search') . '%')
-              ->orWhere('description', 'like', '%' . request('search') . '%')
-              ->orWhere('tags', 'like', '%' . request('search') . '%');
-          }
+      if($filters['search'] ?? false) {
+        $query->where('title', 'like', '%' . request('search') . '%')
+          ->orWhere('description', 'like', '%' . request('search') . '%')
+          ->orWhere('tags', 'like', '%' . request('search') . '%');
+      }
+    }
+
+    // Relationship To User
+    public function user() {
+      return $this->belongsTo(User::class, 'user_id');
     }
 }

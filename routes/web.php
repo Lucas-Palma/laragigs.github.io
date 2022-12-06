@@ -3,6 +3,7 @@
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListingController;
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,19 @@ Route::put('/listings/{listing}',
 // Delte listing
 Route::delete('/listings/{listing}',
 [ListingController::class, 'destroy']);
+
+// Show Register/Create Form
+Route::get('/register',
+[UserController::class, 'create']);
+
+// Create New User
+Route::post('/users', 
+[UserController::class, 'store']);
+
+// Log User Out
+Route::post('/logout', 
+[UserController::class, 'logout']);
+
 
 // Single Listing 
 // It has to be at the bottom because it shares the same route as create.
